@@ -506,8 +506,6 @@ import App from "./App";
 
 // export default App
 
-
-
 // // Joke.js :
 
 // import React from 'react'
@@ -522,6 +520,8 @@ import App from "./App";
 // }
 
 // export default Joke
+
+// --------------------------------------------------------------
 
 // P13 Mapping Components
 // // PART: 1
@@ -766,6 +766,8 @@ import App from "./App";
 
 // export default products
 
+// --------------------------------------------------------------
+
 // P15 : Todo App - Phase 3
 // // App.js
 // import React from 'react'
@@ -919,6 +921,7 @@ import App from "./App";
 
 // export default App
 
+// -------------------------------------------------------------------
 
 // P19: State Practice 1
 // // App.js:
@@ -1021,6 +1024,8 @@ import App from "./App";
 // }
 
 // export default TodoItem
+
+// ------------------------------------------------------------------------
 
 // P 22:  Handling Events in React
 
@@ -1151,3 +1156,332 @@ import App from "./App";
 // export default TodoItem
 
 // --------------------------------------------------------------------------
+
+// P 25: Lifecycle Methods Part 1 & Lifecycle Methods Part 2
+
+// // App.js
+// import React, {Component} from 'react'
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {}
+//   }
+
+//   static getDerivedStateFromProps(props, state) {
+//     /* 
+//       - return the new updated state based on the props
+//       - It can be confusing to use it sometimes, so avoid it.
+//     */
+//   }
+
+//   getSnapshotBeforeUpdate() {
+//     /*
+//       - Creates a backup of the current way things are.(Object with multiple points inside of him, called snapshot.)
+//       - It's not used frequently.+
+//     */
+//   }
+
+//   componentDidMount() {
+//     /* 
+//       - It's runned only after the component was mounted for the first time
+//       - It doesn't run on every rendering 
+//       - Common use: - When using an API to get data from external source 
+//                     - After the data is recived it can be desplayed
+//     */
+//   }
+
+//   /*
+//     - UNSAFE_componentWillReceiveProps(nextProps) from React 17.0 is deprecated to use it. 
+//     - It wont't be a part of React anymore.
+//     */
+//   componentWillReceiveProps(nextProps) {  
+//     /*
+//       - Every time this component receive props from parent component this method is called
+//       - It runs every time a parent component pass data to an child component.
+//     */ 
+//    if(nextProps.whatever !== this.props.whatever) {
+//      // do something
+//    }
+//   }
+
+//   shouldComponentUpdate(nextProps, nextState) {
+//     /*
+//       - It allows to think if this component need to be updated.
+//       - It returns TRUE if needs update, and FALSE if doesn't.
+//       - For example : if nextProps != nextState return TRUE
+//     */
+//   }
+
+//   componentWillUnmount() {
+//     /*
+//       - It's purpose is to :  -clean-up your code before your component disappears
+//                               -(ex: remove event listener)
+//     */
+//   }
+
+
+//   render() {
+//     return(
+//       <div>
+//         Code goes here
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// -------------------------------------------------------------------
+
+// P 26: Conditional Rendering
+
+// // App.js
+// import React, {Component} from 'react'
+// import Conditional from './classes/Conditional'
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       isLoading: true
+//     }
+//   }
+
+//   componentDidMount() {
+//     setTimeout(() => {
+//       this.setState({
+//         isLoading: false
+//       })
+//     }, 5000)
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <Conditional isLoading={this.state.isLoading} />
+//       </div>
+//     )
+//   }
+// // render() {
+// //    return (this.state.isLoading ? <p>Loading...</p> : <Conditional />)
+// // }
+// }
+
+// export default App
+
+
+// // Conditional.js
+
+// import React, {Component} from 'react'
+
+// class Conditional extends Component {
+//     render() {
+//         if(this.props.isLoading) {
+//             return(
+//                 <div>
+//                     Loading...
+//                 </div>
+//             )
+//         } else {
+//             return(
+//                 <div>
+//                     Some cool stuff about conditional rendering.
+//                 </div>
+//             )
+//         }
+        
+//     }
+// }
+
+// export default Conditional
+
+// ---------------------------------------------------------------
+
+// P 27: Conditional Rendering Practice
+
+// // App.js
+// import React, {Component} from 'react'
+// import Message from './classes/Message'
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       isLoggedIn: false
+//     }
+//     this.logIn = this.logIn.bind(this)
+//     this.logOut = this.logOut.bind(this)
+//   }
+
+//   logOut() {
+//     this.setState(prevState => {
+//       return {
+//         isLoggedIn: false
+//       }
+//     })
+//   }
+
+//   logIn(){
+//     this.setState(prevState => {
+//       return {
+//         isLoggedIn: true
+//       }
+//     })
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <div>
+//           <Message isLoggedIn = {this.state.isLoggedIn}/>
+//         </div>
+//         <div>
+//           <button onClick={this.logIn}>Login</button> <span></span>
+//           <button onClick={this.logOut}>Logout</button>
+//         </div>
+//       </div>
+//     )
+//   }
+
+// }
+
+// export default App
+
+// // Message.js:
+// import React, {Component} from 'react'
+
+// class Message extends Component {
+//     render() {
+//         return(
+//             <div>
+//                 {
+//                     this.props.isLoggedIn ? 
+//                     <p>You are logged in.</p> :
+//                     <p>You are logged out.</p>
+//                 }
+//             </div>
+//         )
+//     }
+// }
+
+// export default Message
+
+// -------------------------------------------------------------------------
+
+// P 28: Todo App - Phase 7
+
+// // App.js
+// import React, {Component} from 'react'
+// import todosData from './data/totosData'
+// import TodoItem from './classes/TodoItem';
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       tododItems: todosData
+//     }
+//     this.changeItem = this.changeItem.bind(this)
+//   }
+
+//   changeItem(id) {
+//     this.setState(prevState => {
+//       const newItems = prevState.tododItems.map(item => {
+//         if( item.id === id) {
+//           item.completed = !item.completed
+//         }
+//         return item
+//       })
+//       return newItems
+//     })
+//   }
+
+//   render() {
+//     let items = this.state.tododItems.map(item => {
+//       return <TodoItem key={item.id} content={item} change={this.changeItem}/>
+//     })
+
+//     return(
+//       <div>
+//         {items}
+//       </div>
+//     )
+//   }
+
+// }
+
+// export default App
+
+
+// // TodoItem.js
+// import React, {Component} from 'react'
+
+// class TodoItem extends Component {
+//     render() {
+//         let itemStyle = null
+//         if(this.props.content.completed===true) {
+//             itemStyle={
+//                 textDecoration: "line-through"
+//             }
+//         } else {
+//             itemStyle={
+//                 textDecoration: ""
+//             }
+//         }
+
+//         return(
+//             <div>
+//                 <input type="checkbox" checked={this.props.content.completed}
+//                 onChange={()=>{this.props.change(this.props.content.id)
+//                 }}/>
+//                 <span style={itemStyle}>{this.props.content.text}</span>
+//                 <br/>
+//             </div>    
+//         )
+//     }
+// }
+
+// export default TodoItem
+
+// P 29:Fetching data from an API
+// // App.js
+// import React, {Component} from 'react'
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       loading: false,
+//       character: {}
+//     } 
+//   }
+
+//   componentDidMount() {
+//     this.setState({loading:true})
+//     fetch("https://swapi.co/api/people/1")
+//       .then(response => response.json())
+//       .then(data => {
+//         this.setState({
+//           loading:false,
+//           character: data
+//         })
+//       }) 
+//   }
+
+//   render() {
+//     let message = this.state.loading ? "Loading..." : this.state.character.name
+//     return(
+//       <div>
+//         <p>{this.state.character.name}</p>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// ------------------------------------------------------------
+
+// P 30: Forms Part 1
+
