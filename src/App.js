@@ -1,43 +1,39 @@
-import React from 'react';
-import Header from './components/Header';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
-
-function App() {
-  const firstName = "Bob";
-  const lastName = "Zirol";
-  const date = new Date();
-  const hour = date.getHours();
-  let timeOfDay
-
-  const styles = {
-    color: "#FF8C00",
-    backgroundColor: "#FF2D00"
-}
+import React, {Component} from 'react'
+import todosData from './data/totosData'
+import TodoItem from './classes/TodoItem'
 
 
-  if(hour<12) {
-    timeOfDay="morning"
-    styles.color = "#04756F"
-  }
-  else if(hour>12 && hour<17) {
-    timeOfDay="afternoon"
-    styles.color = "#2E0927"
-  } 
-  else if(hour>17) {
-    timeOfDay="night"
-    styles.color = "#D90000"
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      todoItems: todosData
+    }
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  return(
-    <div>
-      <Header />
-      <MainContent />
-      <Footer />
-      <p>Hello {firstName  + " " + lastName}. The current hour is {date.getHours()+":"+date.getMinutes()}.</p>
-      <p style={styles} >Good {timeOfDay}</p>
-    </div>
-  )
+  handleChange(id) {
+    this.setState(prevState => {
+      const newTodos = prevState.todoItems.map(item =>{
+        if(item.id === id) {
+          item.completed = !item.completed
+        }
+        return item
+      })
+      return newTodos
+    })
+  }
+
+  render() {
+    let items = this.state.todoItems.map( item => 
+      (<TodoItem key={item.id} change={this.handleChange} content={item}/>) )
+
+    return(
+      <div>
+        {items}
+      </div>
+    )
+  }
 }
 
 export default App

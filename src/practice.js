@@ -1,3 +1,5 @@
+import App from "./App";
+
 // P1 ReactDOM & JSX
 // import React from 'react'
 // import ReactDom from 'react-dom'
@@ -297,3 +299,855 @@
 // }
 
 // export default App
+
+//-------------------------------------------------------
+
+
+// P10
+
+// import React from 'react';
+// import TodoItem from './components/TodoItem';
+
+// function App() {
+//     return(
+//         <div>
+//           <TodoItem />
+//           <TodoItem />
+//           <TodoItem />
+//           <TodoItem /> 
+//         </div>
+//     )
+// }
+
+// export default App
+
+
+// import React from 'react';
+
+// function TodoItem() {
+//     return(
+//         <div className="todoItem">
+//             <input type="checkbox" /> 
+//             <p>Placeholder text here</p>
+//         </div>
+//     )
+// }
+
+// export default TodoItem
+
+// ---------------------------------------------
+// P11: Props in React
+// PART 1)
+
+// // App.js
+// import React from "react"
+// import ContactCard from "./components/ContactCard";
+
+// function App() {
+//     return (
+//         <div className="contacts">
+
+//           <ContactCard 
+//             name ="Mr. Whiskerson"
+//             imgUrl = "http://placekitten.com/300/200"
+//             phone = "(212) 555-1234"
+//             email = "mr.whiskaz@catnap.meow"
+//           />
+
+//           <ContactCard 
+//             name ="Fluffykins"
+//             imgUrl = "http://placekitten.com/400/200"
+//             phone = "(212) 555-2345"
+//             email = "fluff@me.com"
+//           />
+
+//           <ContactCard 
+//             name ="Destroyer"
+//             imgUrl = "http://placekitten.com/400/400"
+//             phone = "(212) 555-3456"
+//             email = "ofworlds@yahoo.com"
+//           />
+
+//           <ContactCard 
+//             name ="Felix"
+//             imgUrl = "http://placekitten.com/200/100"
+//             phone = "(212) 555-4567"
+//             email = "thecat@hotmail.com"
+//           />
+//         </div>
+//     )
+// }
+
+// export default App
+
+
+// // ContactCard.js
+// import React from 'react'
+
+// function ContactCard(props) {
+//     console.log(props)
+//     return(
+//         <div>
+//              <div className="contact-card">
+//                 <img src={props.imgUrl}/>
+//                 <h3>{props.name}</h3>
+//                 <p>Phone: {props.phone}</p>
+//                 <p>Email: {props.email}</p>
+//             </div>
+            
+//         </div>
+//     )
+// }
+
+// export default ContactCard
+
+// PART 2
+// // App.js:
+// import React from "react"
+// import ContactCard from "./components/ContactCard";
+
+// function App() {
+//     return (
+//         <div className="contacts">
+
+//           <ContactCard 
+//             contact = {{
+//               name:"Mr. Whiskerson", 
+//             imgUrl: "http://placekitten.com/300/200", 
+//             phone: "(212) 555-1234", 
+//             email: "mr.whiskaz@catnap.meow"
+//           }}
+//           />
+
+//           <ContactCard 
+//             contact ={{
+//               name: "Fluffykins",
+//             imgUrl:"http://placekitten.com/400/200",
+//             phone:"(212) 555-2345",
+//             email:"fluff@me.com"
+//           }}
+//           />
+
+//           <ContactCard 
+//             contact = {{
+//               name: "Destroyer",
+//               imgUrl: "http://placekitten.com/400/400",
+//               phone: "(212) 555-3456",
+//               email: "ofworlds@yahoo.com"
+//             }}
+            
+//           />
+
+//           <ContactCard 
+//             contact = {{
+//               name: "Felix",
+//               imgUrl: "http://placekitten.com/200/100",
+//               phone: "(212) 555-4567",
+//               email: "thecat@hotmail.com"
+//             }}
+//           />
+//         </div>
+//     )
+// }
+
+// export default App
+
+// // ContactCard.js: 
+// import React from 'react'
+
+// function ContactCard(props) {
+//     console.log(props)
+//     return(
+//         <div>
+//              <div className="contact-card">
+//                 <img src={props.contact.imgUrl}/>
+//                 <h3>{props.contact.name}</h3>
+//                 <p>Phone: {props.contact.phone}</p>
+//                 <p>Email: {props.contact.email}</p>
+//             </div>
+            
+//         </div>
+//     )
+// }
+
+// export default ContactCard
+
+//---------------------------------------------------------
+
+//P12 Props and Styling Practice
+// // App.js:
+// import React from 'react'
+// import Joke from './components/Joke'
+
+// function App() {
+//   return(
+//     <div>
+//       <Joke 
+//         content = {{
+//           question: "What is your name?",
+//           punchLine: "It doesn't matter what your name is."
+//         }}
+//       />
+//       <Joke 
+//         content = {{
+//           question: "Good news is, you're not under investigation anymore.",
+//           punchLine: "Bad news is, you're under arrest."
+//         }}
+//       />
+//       <Joke 
+//         content = {{
+//           question: "How you call a doggie with no legs?",
+//           punchLine: "It doesn't matter, he ain't come."
+//         }}
+//       />
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+// // Joke.js :
+
+// import React from 'react'
+
+// function Joke(props) {
+//     return(
+//         <div className="joke">
+//             <p>{props.content.question}</p>
+//             <p>{props.content.punchLine}</p>
+//         </div>
+//     )
+// }
+
+// export default Joke
+
+// P13 Mapping Components
+// // PART: 1
+// // App.js
+// import React from 'react'
+// import Joke from './components/Joke'
+// import JokeList from './components/JokeList'
+
+// function App() {
+  
+//     let jokesData = [
+//       {
+//         question: "What is your name? AAAAA",
+//         punchLine: "It doesn't matter what your name is. AAAAA"
+//       },
+//       {
+//         question: "Good news is, you're not under investigation anymore. AAAAA",
+//         punchLine: "Bad news is, you're under arrest. AAAAA"
+//       },
+//       {
+//         question: "How you call a doggie with no legs? AAAAA",
+//         punchLine: "It doesn't matter, he ain't come. AAAAA"
+//       },
+//     ]
+    
+//   const jokes = jokesData.map(joke => {
+//     return(
+//       <Joke content={{question:joke.question, punchLine:joke.punchLine}}/>
+//     )
+//   })
+
+//   let nums= [1,2,3,4,5,6,7,8,9]
+//   const doubled = nums.map(function(number){
+//     return number*2;
+//   })
+//   console.log(doubled)
+
+//   return(
+//     <div>
+//       <Joke 
+//         content = {{
+//           question: "What is your name?",
+//           punchLine: "It doesn't matter what your name is."
+//         }}
+//       />
+//       <Joke 
+//         content = {{
+//           question: "Good news is, you're not under investigation anymore.",
+//           punchLine: "Bad news is, you're under arrest."
+//         }}
+//       />
+//       <Joke 
+//         content = {{
+//           question: "How you call a doggie with no legs?",
+//           punchLine: "It doesn't matter, he ain't come."
+//         }}
+//       />
+//       {jokes}
+      
+
+//     </div>
+//   )
+// }
+
+// export default App
+
+// // Joke.js :
+
+// import React from 'react'
+
+// function Joke(props) {
+//     return(
+//         <div className="joke">
+//             <p>{props.content.question}</p>
+//             <p>{props.content.punchLine}</p>
+//         </div>
+//     )
+// }
+
+// export default Joke
+
+// // PART: 2
+// import React from 'react'
+// import Joke from './components/Joke'
+// import jokesData from './data/jokesData'
+
+// function App() {
+
+//   let jokes = jokesData.map(function(joke) {
+//     return(<Joke key={joke.key} content={joke} />)
+//   })
+
+//   console.log(jokes)
+
+//   return(
+//     <div>
+//       {jokes}
+//     </div>
+//   )
+  
+
+// }
+// export default App
+
+// // jokesData.js :
+// let jokesData = [
+//     { 
+//         key : 1,
+//         question: "What is your name? AAAAA",
+//         punchLine: "It doesn't matter what your name is. AAAAA"
+//     },
+//     {
+//         key : 2,
+//         question: "Good news is, you're not under investigation anymore. AAAAA",
+//         punchLine: "Bad news is, you're under arrest. AAAAA"
+//     },
+//     {
+//         key : 3,
+//         question: "How you call a doggie with no legs? AAAAA",
+//         punchLine: "It doesn't matter, he ain't come. AAAAA"
+//     },
+//   ]
+
+//   export default jokesData
+
+// ------------------------------------------------------------------
+
+// P14: Mapping Components Practice
+// // App.js:
+// import React from 'react'
+// import productsData from './data/productsData'
+// import Product from './components/Product'
+
+// function App() {
+//   let products = productsData.map((product)=>{
+//     return(<Product key={product.key} content={product}/>)
+//   })
+
+//   return(
+//     <div>
+//       {products}
+//     </div>
+//   )
+// }
+
+// export default App
+
+// // Product.js 1:
+// import React from 'react'
+// import { domainToASCII } from 'url';
+
+
+
+// function Product(props){
+
+//     function popUpAllert() {
+//         alert(props.content.name)
+//         document.getElementById(props.content.id).style.textDecoration="line-through"
+//     }
+
+//     return(
+//         <div>
+//             <h2 id={props.content.id} >{props.content.name}</h2>
+//             <p>Price: {props.content.price}</p>
+//             <p>Description: {props.content.description}</p>
+//             <button onClick={popUpAllert}>Details</button>
+//             <br />
+//         </div>
+//     )
+// }
+
+// export default Product
+
+
+// // Products.js 2 :
+// import React from 'react'
+
+// function Product(props){
+//     return(
+//         <div>
+//             <p>{props.content.name}</p>
+//             <p>Price: {props.content.price}</p>
+//             <p>Description: {props.content.description}</p>
+//             <br />
+//         </div>
+//     )
+// }
+
+// export default Product
+
+// // productsData.js :
+// const products = [
+//     {
+//         id: "1",
+//         name: "Pencil",
+//         price: 1,
+//         description: "Perfect for those who can't remember things! 5/5 Highly recommend."
+//     },
+//     {
+//         id: "2",
+//         name: "Housing",
+//         price: 0,
+//         description: "Housing provided for out-of-state students or those who can't commute"
+//     },
+//     {
+//         id: "3",
+//         name: "Computer Rental",
+//         price: 300,
+//         description: "Don't have a computer? No problem!"
+//     },
+//     {
+//         id: "4",
+//         name: "Coffee",
+//         price: 2,
+//         description: "Wake up!"
+//     },
+//     {
+//         id: "5",
+//         name: "Snacks",
+//         price: 0,
+//         description: "Free snacks!"
+//     },
+//     {
+//         id: "6",
+//         name: "Rubber Duckies",
+//         price: 3.50,
+//         description: "To help you solve your hardest coding problems."
+//     },
+//     {
+//         id: "7",
+//         name: "Fidget Spinner",
+//         price: 21.99,
+//         description: "Because we like to pretend we're in high school."
+//     },
+//     {
+//         id: "8",
+//         name: "Sticker Set",
+//         price: 14.99,
+//         description: "To prove to other devs you know a lot."
+//     }
+// ]
+
+// export default products
+
+// P15 : Todo App - Phase 3
+// // App.js
+// import React from 'react'
+// import TodoItem from './components/TodoItem'
+// import todosData from './data/totosData'
+
+
+// function App() {
+//   let todoItems = todosData.map((todo)=>{
+//     return(
+//       <TodoItem key={todo.id} content={todo}/>
+//     )
+//   })
+
+//   return(
+//     <div className="todo-list">
+//       {todoItems}
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// // TodoItem.js
+// import React from 'react';
+
+// function TodoItem(props) {
+//     return(
+//         <div className="todoItem">
+//             <input type="checkbox" checked={props.content.completed}/> 
+//             <p>{props.content.text}</p>
+//         </div>
+//     )
+// }
+
+// export default TodoItem
+
+//-----------------------------------------------------------------
+// P16 Class-based Components
+// // App.js:
+// import React from "react"
+// import Header from './classes/Header'
+// import Greeting from './classes/Greeting'
+
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <Header username="John Cena"/>
+//         <Greeting />
+//       </div>
+//     )
+//   }
+// }
+
+// export default App 
+
+// // Header.js:
+// import React from 'react'
+
+// class Header extends React.Component {
+//     render(){
+//         return(
+//             <header>
+//                 <p>Wellcome {this.props.username}</p>
+//             </header>
+//         )
+//     }
+// }
+
+// export default Header
+
+// // Greeting.js:
+// import React from 'react'
+
+// class Greeting extends React.Component {
+//     render() {
+//         const date = new Date()
+//         const hours = date.getHours()
+//         let timeOfDay
+
+//         if (hours < 12) {
+//             timeOfDay = "morning"
+//         } else if (hours >= 12 && hours < 17) {
+//             timeOfDay = "afternoon"
+//         } else {
+//             timeOfDay = "night"
+//         }
+
+//         return(
+//             <h1>Good {timeOfDay} to you, sir or madam!</h1>
+//         )
+//     }
+// }
+
+// export default Greeting
+
+//------------------------------------------------------------
+
+// P 17 : State
+
+// //  App.js:
+// import React from "react"
+
+// class App extends React.Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       answare: "Yes"
+//     }
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <h1>Is this important to know?</h1>
+//         <h1>{this.state.answare}</h1>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App  
+
+// ------------------------------------------------------
+
+// P18: State Practice 1
+// // App.js:
+
+// import React from 'react'
+
+// class App extends React.Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       name: "John",
+//       age: 32
+//     }
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <p>Name : {this.state.name}</p>
+//         <p>Age : {this.state.age}</p>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+
+// P19: State Practice 1
+// // App.js:
+// import React from 'react'
+
+// class App extends React.Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       name: "John",
+//       age: 32
+//     }
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <p>Name : {this.state.name}</p>
+//         <p>Age : {this.state.age}</p>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// ---------------------------------------------------
+
+// P 20: State Practice 2
+
+// import React, {Component} from 'react'
+
+// class App extends Component {
+//     constructor() {
+//       super()
+//       this.state = {
+//         isLoggedIn: false
+//       }
+//     }
+  
+//     render() {
+//       let wordDisplay
+//       if(this.state.isLoggedIn) {
+//         wordDisplay = "in."
+//       } else {
+//         wordDisplay = "out."
+//       }
+//       return(
+//         <div>
+//           <p>You are currently logged {wordDisplay}</p>
+//         </div>
+//       )
+//     }
+//   }
+  
+//   export default App
+
+// ------------------------------------------------------------
+
+// P 21: Todo App - Phase 4
+// // App.js
+// import React, {Component} from 'react'
+// import todosData from './data/totosData'
+// import TodoItem from './classes/TodoItem'
+
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       todoItems: todosData.map((item) => {
+//         return (<TodoItem key={item.id} content={item}/>)
+//       })
+//     }
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         {this.state.todoItems}
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// // import React, {Component} from 'react'
+// // Todo
+// class TodoItem extends Component {
+//     render() {
+//         return(
+//             <div>
+//                 <input type="checkbox" checked={this.props.content.completed}/>
+//                 <span>{this.props.content.text}</span>
+//                 <br/>
+//             </div>    
+//         )
+//     }
+// }
+
+// export default TodoItem
+
+// P 22:  Handling Events in React
+
+// // App.js :
+// import React, {Component} from 'react'
+
+// function handleMouseOver() {
+//   console.log("Mouse over")
+// }
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       imageUrl: "https://bit.ly/2TqiiPH"
+//     }
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <img onMouseOver={handleMouseOver} src={this.state.imageUrl}/>
+//         <br/>
+//         <br/>
+//         <button onClick={()=>{console.log("I was clicked.")}} onChange={()=>{console.log("status changed")}>BUTTON</button>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// --------------------------------------------------------
+
+// P23:  Changing State
+
+// App.js
+// import React, {Component} from 'react'
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       count: 0
+//     }
+//     this.changeCounter = this.changeCounter.bind(this)
+//   }
+
+//   changeCounter() {
+//     this.setState({count: this.state.count + 1})
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <div>{this.state.count}</div>
+//         <button onClick={this.changeCounter}>Change</button>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// -----------------------------------
+
+// P 24: Todo App - Phase 6
+
+// // App.js:
+// import React, {Component} from 'react'
+// import todosData from './data/totosData'
+// import TodoItem from './classes/TodoItem'
+
+
+// class App extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       todoItems: todosData
+//     }
+//     this.handleChange = this.handleChange.bind(this)
+//   }
+
+//   handleChange(id) {
+//     this.setState(prevState => {
+//       const newTodos = prevState.todoItems.map(item =>{
+//         if(item.id === id) {
+//           item.completed = !item.completed
+//         }
+//         return item
+//       })
+//       return newTodos
+//     })
+//   }
+
+//   render() {
+//     let items = this.state.todoItems.map( item => 
+//       (<TodoItem key={item.id} change={this.handleChange} content={item}/>) )
+
+//     return(
+//       <div>
+//         {items}
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// // TodoItems.js:
+
+// import React, {Component} from 'react'
+
+// class TodoItem extends Component {
+//     render() {
+//         return(
+//             <div>
+//                 <input type="checkbox" checked={this.props.content.completed}
+//                 onChange={()=>{this.props.change(this.props.content.id)
+//                 }}/>
+//                 <span>{this.props.content.text}</span>
+//                 <br/>
+//             </div>    
+//         )
+//     }
+// }
+
+// export default TodoItem
+
+// --------------------------------------------------------------------------
