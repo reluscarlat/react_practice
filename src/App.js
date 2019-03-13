@@ -1,132 +1,157 @@
-
-// App.js
 import React, {Component} from 'react'
 
 class App extends Component {
   constructor() {
     super()
-    this.state = {
+    this.state={
       firstName: "",
       lastName: "",
-      checker: false,
+      age: 0,
       gender: "",
-      favoriteColor:"blue"
-    } 
+      destination: "Barcelona",
+      vegetarian: false,
+      lactoseFree: true,
+      kosher: false
+    }
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit() {
+    
   }
 
   handleChange(event) {
-    if(event.target.name === "checker") {
+    if(event.target.type === "checkbox") {
       this.setState({
-        [event.target.name] : !this.state.checker
+        [event.target.name] : !this.state[event.target.name]
       })
-      return 
+    } else {
+      this.setState({
+        [event.target.name] : event.target.value
+      })
     }
-    this.setState({
-      [event.target.name]: event.target.value
-    })
   }
-
-
-  handleSubmit(event) {
-    event.preventDefault()
-  }
-
   render() {
+    console.log(this.state.firstName + " - " + this.state.lastName + " - AGe:" 
+    + this.state.age + " - " + this.state.gender + " - " + this.state.destination)
     return(
       <div>
-
-
-
-
-        {/* INPUT FORM*/}
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <div>
-            <label>First Name: <input 
-            type="text" 
-            name="firstName" 
-            value={this.state.firstName} 
-            onChange={this.handleChange} 
-            /></label>
+            <label>
+              First name: 
+              <input 
+                name="firstName" 
+                type="text" 
+                value={this.state.firstName} 
+                onChange={this.handleChange}
+              />
+            </label>
           </div>
+          <br/>
+
           <div>
-            <label>Last Name: <input 
-            type="text" 
-            name="lastName" 
-            value={this.state.lastName} 
-            onChange={this.handleChange} 
-            /></label>
+            <label>
+              Last name: 
+              <input 
+                name="lastName" 
+                type="text" 
+                value={this.state.lastName} 
+                onChange={this.handleChange}
+              />
+            </label>
           </div>
+          <br/>
+
           <div>
-            <input type="submit" value="SUBMIT"/>
-            {/**
-            - <button>SUBMIT NOW</button> is equivalent of <input type="submit" value=""SUBMIT NOW/>
-            - You can set onSubmit event on:  - form tag (ex: <form onSubmit={handleSubmit}> ... </form>)
-                                              - button/input tag
-            */}
+            <label>
+              Age: 
+              <input 
+                name="age" 
+                type="number" 
+                value={this.state.age} 
+                onChange={this.handleChange}
+              />
+            </label>
           </div>
+          <br/>
+
           <div>
-            <p>{this.state.firstName +" " + this.state.lastName}</p>
+            <p>Gender:</p>
+            <label>
+              Male
+              <input 
+                name="gender"
+                type="radio"
+                value="male"
+                checked={this.state.gender === 'male'}
+                onChange={this.handleChange}
+              />
+            </label>
+          
+            <label>
+              Female
+              <input 
+                name="gender"
+                type="radio"
+                value="female"
+                checked={this.state.gender === 'female'}
+                onChange={this.handleChange}
+              />
+            </label>
           </div>
+          <br/><br/>
+
+          <div>
+            <label>
+              Destination:
+              <select 
+                name="destination" 
+                type="text"
+                value={this.state.destination} 
+                onChange={this.handleChange}
+              >
+                <option value="Barcelona">Barcelona</option>
+                <option value="Paris">Paris</option>
+                <option value="London">London</option>
+              </select>
+            </label>
+          </div>
+          <br/>
+
+          <div>
+            <label>
+              Dietary Restrictions: <br/>
+              <input 
+                name="vegetarian" 
+                type="checkbox"
+                checked={this.state.vegetarian} 
+                onChange={this.handleChange}
+              />Vegetarian<br/> 
+              <input 
+                name="lactoseFree" 
+                type="checkbox" 
+                checked={this.state.lactoseFree} 
+                onChange={this.handleChange}
+              />Lactose Free<br/>
+              <input 
+                name="kosher" 
+                type="checkbox" 
+                checked={this.state.kosher} 
+                onChange={this.handleChange}
+              />Kosher<br/>
+            </label>
+          </div>
+          <br/>
+
+          <button onSubmit={(event)=>{}}>Submit</button>
         </form>
-
-
-
-
-        {/* CHECKBOX*/}
-        <input 
-          name="checker"
-          type="checkbox"
-          checked={this.state.checker}
-          onChange={this.handleChange}
-        />
-
-
-
-        {/* RADIO BUTTONS*/}
-        <br/><br/>
-        <label>
-          <input 
-            name="gender"
-            type="radio"
-            value="male"
-            checked={this.state.gender === "male"}
-            onChange={this.handleChange}
-          />
-        Male</label>
-        <label>
-          <input 
-            name="gender"
-            type="radio"
-            value="female"
-            checked={this.state.gender === "female"}
-            onChange={this.handleChange}
-          />
-        Female</label>
-        <p>You are a {this.state.gender}</p>
-        {/* Formik - Form framework */}
-
-
-
-
-        {/* SELECT OPTIONS */}
-        <select 
-          value={this.state.favoriteColor}
-          onChange={this.handleChange}
-          name="favoriteColor"
-        >
-          <option value="blue">BLUE</option>
-          <option value="red">RED</option>
-          <option value="green">GREEN</option>
-        </select>
-        {console.log(this.state.favoriteColor)}
-
-
-
+        
       </div>
     )
   }
+
+
 }
 
 export default App
